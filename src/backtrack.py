@@ -14,5 +14,6 @@ def backtrack(M, n, m, A, B):
         else:
             j -= 1
 
+    C.reverse()
     return C
 
