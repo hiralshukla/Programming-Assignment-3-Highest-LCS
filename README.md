@@ -100,6 +100,17 @@ Observation:
 
 Give a recurrence that is the basis of a dynamic programming algorithm to compute the HVLCS of strings *A* and *B*. You must provide the appropriate base cases, and explain why your recurrence is correct.
 
+Let $w(c) = \text{alphabet}[c]$ be the weight of character $c$.
+
+$$OPT(i,j) = \begin{cases} 
+0 & \text{if } i = 0 \text{ or } j = 0 \\ 
+w(A[i]) + OPT(i-1,j-1) & \text{if } A[i] = B[j] \\ 
+\max(OPT(i-1,j),\ OPT(i,j-1)) & \text{if } A[i] \neq B[j] 
+\end{cases}$$
+
+The recurrence is correct because it covers all possible cases. When either string is empty there is no common subsequence, so the weight is 0. When characters match, we always take them since all weights are positive, adding w(A[i])w(A[i])
+w(A[i]) to the best solution of the remaining subproblem. When characters don't match, we can't include both, so we take the max of skipping one or the other.
+
 ## Question 3: Big-Oh
 
 Give pseudocode of an algorithm to compute the length of the HVLCS of given strings *A* and *B*. What is the runtime of your algorithm?
