@@ -114,3 +114,24 @@ w(A[i]) to the best solution of the remaining subproblem. When characters don't 
 ## Question 3: Big-Oh
 
 Give pseudocode of an algorithm to compute the length of the HVLCS of given strings *A* and *B*. What is the runtime of your algorithm?
+
+```
+HVLCS(A, B, w):
+    n = len(A)
+    m = len(B)
+    
+    for i = 0 to n:
+        M[i][0] = 0
+    for j = 0 to m:
+        M[0][j] = 0
+    
+    for i = 1 to n:
+        for j = 1 to m:
+            if A[i] == B[j]:
+                M[i][j] = w(A[i]) + M[i-1][j-1]
+            else:
+                M[i][j] = max(M[i-1][j], M[i][j-1])
+    
+    return M[n][m]
+```
+**Runtime:** $O(nm)$ — there are $n \times m$ subproblems and each takes $O(1)$ to compute, giving $O(nm)$ overall.
