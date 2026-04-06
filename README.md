@@ -128,7 +128,7 @@ HVLCS(A, B, w):
     for i = 1 to n:
         for j = 1 to m:
             if A[i] == B[j]:
-                M[i][j] = w(A[i]) + M[i-1][j-1]
+                M[i][j] = 1 + M[i-1][j-1]
             else:
                 M[i][j] = max(M[i-1][j], M[i][j-1])
     
